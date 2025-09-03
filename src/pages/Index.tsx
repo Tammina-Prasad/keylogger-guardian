@@ -5,6 +5,7 @@ import { Alert, AlertDescription } from '@/components/ui/alert';
 import { Shield, Eye, Lock, AlertTriangle, RotateCcw, Zap, HelpCircle, BookOpen, Workflow, Info } from 'lucide-react';
 import KeyloggerSimulation from '@/components/KeyloggerSimulation';
 import SecurityQuiz from '@/components/SecurityQuiz';
+import keyloggerFlowchart from '@/assets/keylogger-flowchart.png';
 
 const Index = () => {
   const sections = [
@@ -113,12 +114,9 @@ const Index = () => {
                 <div className="p-3 rounded-lg bg-primary/10 border border-primary/20">
                   <section.icon className="h-6 w-6 text-primary" />
                 </div>
-                <div>
-                  <Badge variant="outline" className="mb-2 border-primary/30 text-primary">
-                    {index + 1}
-                  </Badge>
-                  <h2 className="text-2xl font-bold text-foreground">{section.title}</h2>
-                </div>
+              <div>
+                <h2 className="text-2xl font-bold text-foreground">{section.title}</h2>
+              </div>
               </div>
               
               <div className="space-y-4">
@@ -146,9 +144,6 @@ const Index = () => {
                 <Eye className="h-6 w-6 text-primary" />
               </div>
               <div>
-                <Badge variant="outline" className="mb-2 border-primary/30 text-primary">
-                  6
-                </Badge>
                 <h2 className="text-2xl font-bold text-foreground">Simulate Attack (Educational Only)</h2>
               </div>
             </div>
@@ -176,9 +171,6 @@ const Index = () => {
               <HelpCircle className="h-6 w-6 text-primary" />
             </div>
             <div>
-              <Badge variant="outline" className="mb-2 border-primary/30 text-primary">
-                7
-              </Badge>
               <h2 className="text-2xl font-bold text-foreground">Security Knowledge Quiz</h2>
             </div>
           </div>
@@ -193,9 +185,6 @@ const Index = () => {
                 <BookOpen className="h-6 w-6 text-primary" />
               </div>
               <div>
-                <Badge variant="outline" className="mb-2 border-primary/30 text-primary">
-                  8
-                </Badge>
                 <h2 className="text-2xl font-bold text-foreground">Security Glossary</h2>
               </div>
             </div>
@@ -211,44 +200,26 @@ const Index = () => {
           </Card>
         </section>
 
-        {/* Workflow Information */}
-        <section id="workflow" className="scroll-mt-20">
-          <Card className="p-8 bg-cyber-bg-section border-cyber-border shadow-cyber">
-            <div className="flex items-center gap-4 mb-6">
-              <div className="p-3 rounded-lg bg-primary/10 border border-primary/20">
-                <Workflow className="h-6 w-6 text-primary" />
-              </div>
-              <div>
-                <Badge variant="outline" className="mb-2 border-primary/30 text-primary">
-                  9
-                </Badge>
-                <h2 className="text-2xl font-bold text-foreground">Keylogger Attack Workflow</h2>
-              </div>
+        {/* Keylogger Flowchart */}
+        <section id="flowchart" className="scroll-mt-20 text-center py-16">
+          <div className="bg-cyber-bg-section rounded-2xl p-16">
+            <h2 className="text-4xl font-bold text-primary mb-6">
+              Keylogger Flowchart
+            </h2>
+            <p className="text-muted-foreground text-lg max-w-3xl mx-auto mb-8">
+              This flowchart illustrates the lifecycle of a keylogger — from listening to keystrokes, 
+              to storing them, and finally writing them into a log file.  
+              (For awareness & educational purposes 💡)
+            </p>
+            
+            <div className="flex justify-center">
+              <img 
+                src={keyloggerFlowchart} 
+                alt="Keylogger Flowchart" 
+                className="max-w-4xl w-full rounded-3xl shadow-cyber border border-primary/20"
+              />
             </div>
-
-            <div className="space-y-6">
-              <p className="text-muted-foreground">
-                Understanding how keylogger attacks work helps in developing better defense strategies:
-              </p>
-              
-              <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
-                <div className="p-4 bg-gradient-to-br from-destructive/10 to-background border border-destructive/20 rounded-lg">
-                  <h4 className="font-semibold text-destructive mb-2">1. Initial Infection</h4>
-                  <p className="text-sm text-muted-foreground">Malware delivery through phishing, infected media, or drive-by downloads</p>
-                </div>
-                
-                <div className="p-4 bg-gradient-to-br from-yellow-500/10 to-background border border-yellow-500/20 rounded-lg">
-                  <h4 className="font-semibold text-yellow-400 mb-2">2. Silent Installation</h4>
-                  <p className="text-sm text-muted-foreground">Keylogger installs and runs hidden in the background, avoiding detection</p>
-                </div>
-                
-                <div className="p-4 bg-gradient-to-br from-primary/10 to-background border border-primary/20 rounded-lg">
-                  <h4 className="font-semibold text-primary mb-2">3. Data Exfiltration</h4>
-                  <p className="text-sm text-muted-foreground">Captured keystrokes are transmitted to attackers for malicious use</p>
-                </div>
-              </div>
-            </div>
-          </Card>
+          </div>
         </section>
       </div>
 
