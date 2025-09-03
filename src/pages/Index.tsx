@@ -215,8 +215,8 @@ const Index = () => {
             
             <div className="flex justify-center">
               <img 
-                src={keyloggerFlowchartProcess} 
-                alt="Keylogger Flowchart Process" 
+                src="/lovable-uploads/1098d373-a9eb-4b2e-8a9b-532e6d134a8e.png" 
+                alt="Keylogger Flowchart Process - Complete Workflow" 
                 className="max-w-4xl w-full rounded-3xl shadow-cyber border border-primary/20"
               />
             </div>
