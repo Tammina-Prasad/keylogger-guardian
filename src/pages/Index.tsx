@@ -6,6 +6,7 @@ import { Shield, Eye, Lock, AlertTriangle, RotateCcw, Zap, HelpCircle, BookOpen,
 import KeyloggerSimulation from '@/components/KeyloggerSimulation';
 import SecurityQuiz from '@/components/SecurityQuiz';
 import keyloggerFlowchart from '@/assets/keylogger-flowchart.png';
+import keyloggerFlowchartProcess from '@/assets/keylogger-flowchart-process.png';
 
 const Index = () => {
   const sections = [
@@ -214,8 +215,8 @@ const Index = () => {
             
             <div className="flex justify-center">
               <img 
-                src={keyloggerFlowchart} 
-                alt="Keylogger Flowchart" 
+                src={keyloggerFlowchartProcess} 
+                alt="Keylogger Flowchart Process" 
                 className="max-w-4xl w-full rounded-3xl shadow-cyber border border-primary/20"
               />
             </div>
