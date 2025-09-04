@@ -3,78 +3,53 @@ import { Card } from '@/components/ui/card';
 import { Badge } from '@/components/ui/badge';
 import { Alert, AlertDescription } from '@/components/ui/alert';
 import { Shield, Eye, Lock, AlertTriangle, RotateCcw, Zap, HelpCircle, BookOpen, Workflow, Info } from 'lucide-react';
+import { Link } from 'react-router-dom';
 import KeyloggerSimulation from '@/components/KeyloggerSimulation';
 import SecurityQuiz from '@/components/SecurityQuiz';
-import keyloggerFlowchart from '@/assets/keylogger-flowchart.png';
-import keyloggerFlowchartProcess from '@/assets/keylogger-flowchart-process.png';
 
 const Index = () => {
-  const sections = [
+  const mainSections = [
     {
       id: 'what-is',
       icon: Info,
       title: 'What is a Keylogger?',
-      content: 'A keylogger is a malicious tool (software or hardware) that records user keystrokes without their knowledge. Attackers use keyloggers to steal sensitive information like passwords, credit card numbers, and personal data.'
+      description: 'Learn about keylogger fundamentals and various types',
+      link: '/what-is-keylogger'
     },
     {
       id: 'spread',
       icon: Zap,
       title: 'How It Spreads',
-      content: 'Keyloggers spread through various attack vectors:',
-      list: [
-        'Phishing emails with malicious attachments',
-        'Infected USB drives and removable media',
-        'Malicious downloads or cracked software',
-        'Drive-by website infections',
-        'Social engineering attacks'
-      ]
-    },
-    {
-      id: 'encryption',
-      icon: Lock,
-      title: 'Encryption Concept',
-      content: 'Encryption converts readable data into unreadable ciphertext. Even if a keylogger captures keystrokes, strong encryption ensures that attackers cannot easily access the original information without the decryption key.'
+      description: 'Common distribution methods and attack vectors',
+      link: '/how-it-spreads'
     },
     {
       id: 'prevention',
       icon: Shield,
       title: 'Prevention Strategies',
-      content: 'Protect yourself with these security measures:',
-      list: [
-        'Keep operating system and antivirus software updated',
-        'Use two-factor authentication (2FA) wherever possible',
-        'Avoid suspicious links and downloads',
-        'Regularly inspect USB ports for unknown hardware devices',
-        'Use virtual keyboards for sensitive input',
-        'Enable real-time protection in antivirus software'
-      ]
+      description: 'Essential security measures and best practices',
+      link: '/prevention'
     },
     {
       id: 'recovery',
       icon: RotateCcw,
       title: 'Recovery Steps',
-      content: 'If you suspect keylogger infection:',
-      list: [
-        'Immediately disconnect from the internet',
-        'Run comprehensive antivirus and anti-malware scans',
-        'Change all passwords from a clean, trusted device',
-        'Check bank and credit card statements for unauthorized activity',
-        'Restore system from clean backups if available',
-        'Consider professional cybersecurity assistance'
-      ]
+      description: 'Actions to take if you suspect infection',
+      link: '/recovery'
     },
     {
       id: 'risks',
       icon: AlertTriangle,
       title: 'Risk Assessment',
-      content: 'Keyloggers pose significant security risks:',
-      list: [
-        'Identity theft and financial fraud',
-        'Corporate espionage and data breaches',
-        'Unauthorized access to personal accounts',
-        'Privacy violations and surveillance',
-        'Intellectual property theft'
-      ]
+      description: 'Understanding the dangers and consequences',
+      link: '#risk'
+    },
+    {
+      id: 'encryption',
+      icon: Lock,
+      title: 'Encryption Concept',
+      description: 'How encryption protects against keyloggers',
+      link: '#encryption'
     }
   ];
 
@@ -107,35 +82,76 @@ const Index = () => {
       </header>
 
       <div className="container mx-auto px-4 py-8 space-y-12">
-        {/* Main Content Sections */}
-        {sections.map((section, index) => (
-          <section key={section.id} id={section.id} className="scroll-mt-20">
-            <Card className="p-8 bg-cyber-bg-section border-cyber-border shadow-cyber">
-              <div className="flex items-center gap-4 mb-6">
-                <div className="p-3 rounded-lg bg-primary/10 border border-primary/20">
-                  <section.icon className="h-6 w-6 text-primary" />
-                </div>
+        {/* Main Navigation Cards */}
+        <section>
+          <h2 className="text-3xl font-bold text-center text-foreground mb-8">Explore Keylogger Security</h2>
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+            {mainSections.map((section, index) => (
+              <Link key={section.id} to={section.link}>
+                <Card className="p-6 bg-cyber-bg-section border-cyber-border shadow-cyber hover:shadow-cyber-glow transition-all duration-300 h-full">
+                  <div className="flex flex-col h-full">
+                    <div className="flex items-center gap-4 mb-4">
+                      <div className="p-3 rounded-lg bg-primary/10 border border-primary/20">
+                        <section.icon className="h-6 w-6 text-primary" />
+                      </div>
+                    </div>
+                    <h3 className="text-xl font-bold text-foreground mb-3">{section.title}</h3>
+                    <p className="text-muted-foreground leading-relaxed flex-grow">{section.description}</p>
+                    <div className="mt-4 text-primary hover:text-primary/80 font-medium">
+                      Learn More →
+                    </div>
+                  </div>
+                </Card>
+              </Link>
+            ))}
+          </div>
+        </section>
+
+        {/* Additional Sections */}
+        <section id="encryption" className="scroll-mt-20">
+          <Card className="p-8 bg-cyber-bg-section border-cyber-border shadow-cyber">
+            <div className="flex items-center gap-4 mb-6">
+              <div className="p-3 rounded-lg bg-primary/10 border border-primary/20">
+                <Lock className="h-6 w-6 text-primary" />
+              </div>
               <div>
-                <h2 className="text-2xl font-bold text-foreground">{section.title}</h2>
+                <h2 className="text-2xl font-bold text-foreground">Encryption Concept</h2>
               </div>
+            </div>
+            
+            <div className="space-y-4">
+              <p className="text-muted-foreground leading-relaxed">
+                Encryption converts readable data into unreadable ciphertext. Even if a keylogger captures keystrokes, 
+                strong encryption ensures that attackers cannot easily access the original information without the decryption key.
+              </p>
+            </div>
+          </Card>
+        </section>
+
+        <section id="risk" className="scroll-mt-20">
+          <Card className="p-8 bg-cyber-bg-section border-cyber-border shadow-cyber">
+            <div className="flex items-center gap-4 mb-6">
+              <div className="p-3 rounded-lg bg-primary/10 border border-primary/20">
+                <AlertTriangle className="h-6 w-6 text-primary" />
               </div>
-              
-              <div className="space-y-4">
-                <p className="text-muted-foreground leading-relaxed">{section.content}</p>
-                {section.list && (
-                  <ul className="space-y-2">
-                    {section.list.map((item, idx) => (
-                      <li key={idx} className="flex items-start gap-3 text-muted-foreground">
-                        <div className="w-2 h-2 rounded-full bg-primary mt-2 flex-shrink-0" />
-                        <span>{item}</span>
-                      </li>
-                    ))}
-                  </ul>
-                )}
+              <div>
+                <h2 className="text-2xl font-bold text-foreground">Risk Assessment</h2>
               </div>
-            </Card>
-          </section>
-        ))}
+            </div>
+            
+            <div className="space-y-4">
+              <p className="text-muted-foreground leading-relaxed">Keyloggers pose significant security risks:</p>
+              <ul className="space-y-2">
+                {['Identity theft and financial fraud', 'Corporate espionage and data breaches', 'Unauthorized access to personal accounts', 'Privacy violations and surveillance', 'Intellectual property theft'].map((item, idx) => (
+                  <li key={idx} className="flex items-start gap-3 text-muted-foreground">
+                    <div className="w-2 h-2 rounded-full bg-primary mt-2 flex-shrink-0" />
+                    <span>{item}</span>
+                  </li>
+                ))}
+              </ul>
+            </div>
+          </Card>
+        </section>
 
         {/* Interactive Simulation */}
         <section id="simulation" className="scroll-mt-20">
