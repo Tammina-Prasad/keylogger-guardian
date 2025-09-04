@@ -9,6 +9,7 @@ import WhatIsKeylogger from "./pages/WhatIsKeylogger";
 import HowItSpreads from "./pages/HowItSpreads";
 import Prevention from "./pages/Prevention";
 import Recovery from "./pages/Recovery";
+import RiskAssessment from "./pages/RiskAssessment";
 
 const queryClient = new QueryClient();
 
@@ -24,6 +25,7 @@ const App = () => (
           <Route path="/how-it-spreads" element={<HowItSpreads />} />
           <Route path="/prevention" element={<Prevention />} />
           <Route path="/recovery" element={<Recovery />} />
+          <Route path="/risk-assessment" element={<RiskAssessment />} />
           {/* ADD ALL CUSTOM ROUTES ABOVE THE CATCH-ALL "*" ROUTE */}
           <Route path="*" element={<NotFound />} />
         </Routes>

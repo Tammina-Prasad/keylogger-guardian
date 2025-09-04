@@ -41,8 +41,8 @@ const Index = () => {
       id: 'risks',
       icon: AlertTriangle,
       title: 'Risk Assessment',
-      description: 'Understanding the dangers and consequences',
-      link: '#risk'
+      description: 'Take our security quiz to evaluate your vulnerability',
+      link: '/risk-assessment'
     },
     {
       id: 'encryption',
