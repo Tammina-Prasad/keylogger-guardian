@@ -70,7 +70,7 @@ const Index = () => {
           <div className="text-center">
             <div className="flex items-center justify-center gap-3 mb-4">
               <Shield className="h-12 w-12 text-primary animate-pulse-glow" />
-              <h1 className="text-4xl lg:text-6xl font-bold bg-gradient-to-r from-primary to-cyan-300 bg-clip-text text-transparent">
+              <h1 className="text-4xl lg:text-6xl font-bold bg-gradient-to-r from-primary via-primary-glow to-cyan-400 bg-clip-text text-transparent drop-shadow-sm">
                 Keylogger Awareness Hub
               </h1>
             </div>
