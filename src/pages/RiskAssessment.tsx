@@ -71,19 +71,20 @@ export default function RiskAssessment() {
 
   const handleOptionSelect = (optionIndex: number) => {
     setSelectedOption(optionIndex);
-  };
-
-  const handleNext = () => {
-    if (selectedOption !== null) {
-      const newAnswers = [...answers, riskQuestions[currentQuestion].options[selectedOption].risk];
-      setAnswers(newAnswers);
-      
-      if (currentQuestion < riskQuestions.length - 1) {
+    
+    // Auto-advance to next question
+    const newAnswers = [...answers, riskQuestions[currentQuestion].options[optionIndex].risk];
+    setAnswers(newAnswers);
+    
+    if (currentQuestion < riskQuestions.length - 1) {
+      setTimeout(() => {
         setCurrentQuestion(currentQuestion + 1);
         setSelectedOption(null);
-      } else {
+      }, 500); // Small delay for visual feedback
+    } else {
+      setTimeout(() => {
         setShowResult(true);
-      }
+      }, 500);
     }
   };
 
@@ -127,10 +128,85 @@ export default function RiskAssessment() {
                   {risk.level} Risk
                 </h2>
                 <p className="text-muted-foreground text-lg max-w-2xl mx-auto">
-                  {risk.level === "Low" && "Great job! Your security practices are excellent. Keep up the good work!"}
-                  {risk.level === "Medium" && "Your security is decent, but there's room for improvement. Consider strengthening some practices."}
+                  {risk.level === "Low" && "Great job! Your security practices are excellent, but there's always room for improvement."}
+                  {risk.level === "Medium" && "Good security practices, but there's room for improvement."}
                   {risk.level === "High" && "Your system is at high risk! Please review and improve your security practices immediately."}
                 </p>
+              </div>
+
+              {/* Recommendations Section */}
+              <div className="mt-8 space-y-4">
+                <h3 className="text-xl font-semibold text-foreground">Recommendations:</h3>
+                <div className="text-left space-y-3 max-w-2xl mx-auto">
+                  {risk.level === "Low" && (
+                    <>
+                      <div className="flex items-start gap-3 p-3 rounded-lg bg-muted/30">
+                        <div className="w-4 h-4 rounded-full border-2 border-primary mt-0.5 flex-shrink-0" />
+                        <span className="text-muted-foreground">Consider implementing advanced threat detection tools</span>
+                      </div>
+                      <div className="flex items-start gap-3 p-3 rounded-lg bg-muted/30">
+                        <div className="w-4 h-4 rounded-full border-2 border-primary mt-0.5 flex-shrink-0" />
+                        <span className="text-muted-foreground">Set up network monitoring for suspicious activities</span>
+                      </div>
+                      <div className="flex items-start gap-3 p-3 rounded-lg bg-muted/30">
+                        <div className="w-4 h-4 rounded-full border-2 border-primary mt-0.5 flex-shrink-0" />
+                        <span className="text-muted-foreground">Review and update security policies regularly</span>
+                      </div>
+                      <div className="flex items-start gap-3 p-3 rounded-lg bg-muted/30">
+                        <div className="w-4 h-4 rounded-full border-2 border-primary mt-0.5 flex-shrink-0" />
+                        <span className="text-muted-foreground">Consider security awareness training for all users</span>
+                      </div>
+                    </>
+                  )}
+                  {risk.level === "Medium" && (
+                    <>
+                      <div className="flex items-start gap-3 p-3 rounded-lg bg-muted/30">
+                        <div className="w-4 h-4 rounded-full border-2 border-primary mt-0.5 flex-shrink-0" />
+                        <span className="text-muted-foreground">Enable automatic updates for your operating system and software</span>
+                      </div>
+                      <div className="flex items-start gap-3 p-3 rounded-lg bg-muted/30">
+                        <div className="w-4 h-4 rounded-full border-2 border-primary mt-0.5 flex-shrink-0" />
+                        <span className="text-muted-foreground">Use reputable antivirus software with real-time protection</span>
+                      </div>
+                      <div className="flex items-start gap-3 p-3 rounded-lg bg-muted/30">
+                        <div className="w-4 h-4 rounded-full border-2 border-primary mt-0.5 flex-shrink-0" />
+                        <span className="text-muted-foreground">Set up automated daily backups to multiple locations</span>
+                      </div>
+                      <div className="flex items-start gap-3 p-3 rounded-lg bg-muted/30">
+                        <div className="w-4 h-4 rounded-full border-2 border-primary mt-0.5 flex-shrink-0" />
+                        <span className="text-muted-foreground">Use a password manager with unique, complex passwords</span>
+                      </div>
+                      <div className="flex items-start gap-3 p-3 rounded-lg bg-muted/30">
+                        <div className="w-4 h-4 rounded-full border-2 border-primary mt-0.5 flex-shrink-0" />
+                        <span className="text-muted-foreground">Be extremely cautious with email attachments and links</span>
+                      </div>
+                    </>
+                  )}
+                  {risk.level === "High" && (
+                    <>
+                      <div className="flex items-start gap-3 p-3 rounded-lg bg-muted/30">
+                        <div className="w-4 h-4 rounded-full border-2 border-destructive mt-0.5 flex-shrink-0" />
+                        <span className="text-muted-foreground">Immediately update your operating system and all software</span>
+                      </div>
+                      <div className="flex items-start gap-3 p-3 rounded-lg bg-muted/30">
+                        <div className="w-4 h-4 rounded-full border-2 border-destructive mt-0.5 flex-shrink-0" />
+                        <span className="text-muted-foreground">Install and configure comprehensive antivirus protection</span>
+                      </div>
+                      <div className="flex items-start gap-3 p-3 rounded-lg bg-muted/30">
+                        <div className="w-4 h-4 rounded-full border-2 border-destructive mt-0.5 flex-shrink-0" />
+                        <span className="text-muted-foreground">Create backup strategy with multiple secure locations</span>
+                      </div>
+                      <div className="flex items-start gap-3 p-3 rounded-lg bg-muted/30">
+                        <div className="w-4 h-4 rounded-full border-2 border-destructive mt-0.5 flex-shrink-0" />
+                        <span className="text-muted-foreground">Change all passwords and enable two-factor authentication</span>
+                      </div>
+                      <div className="flex items-start gap-3 p-3 rounded-lg bg-muted/30">
+                        <div className="w-4 h-4 rounded-full border-2 border-destructive mt-0.5 flex-shrink-0" />
+                        <span className="text-muted-foreground">Avoid opening any email attachments or suspicious links</span>
+                      </div>
+                    </>
+                  )}
+                </div>
               </div>
               
               <div className="grid md:grid-cols-3 gap-4 mt-8">
@@ -154,8 +230,8 @@ export default function RiskAssessment() {
                 </Card>
               </div>
 
-              <Button onClick={resetQuiz} className="mt-6">
-                Take Assessment Again
+              <Button onClick={resetQuiz} className="mt-8">
+                Retake Assessment
               </Button>
             </CardContent>
           </Card>
@@ -204,15 +280,6 @@ export default function RiskAssessment() {
               </div>
             </div>
             
-            <div className="flex justify-end pt-4">
-              <Button 
-                onClick={handleNext}
-                disabled={selectedOption === null}
-                className="px-8"
-              >
-                {currentQuestion === riskQuestions.length - 1 ? "Finish Assessment" : "Next Question"}
-              </Button>
-            </div>
           </CardContent>
         </Card>
       </div>
